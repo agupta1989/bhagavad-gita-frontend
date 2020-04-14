@@ -1,12 +1,40 @@
+<p align="center">
+  <a href="https://bhagavadgita.io">
+    <img src="gita.png" alt="Logo" width="300">
+  </a>
+
+  <h3 align="center">BhagavadGita.io Frontend</h3>
+
+  <p align="center">
+    Frontend code for BhagavadGita.io v2, which is an app built for Gita readers by Gita readers.
+    <br />
+    <br />
+    <a href="https://bhagavadgita.dev">View Demo</a>
+    ·
+    <a href="https://github.com/gita/bhagavad-gita-frontend/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/gita/bhagavad-gita-frontend/issues">Request Feature</a>
+  </p>
+</p>
+
+<p align="center">
+  <a href="https://github.com/gita/bhagavad-gita-frontend/blob/master/LICENSE">
+    <img alt="LICENSE" src="https://img.shields.io/badge/License-GPLv3-blue.svg?maxAge=43200">
+  </a>
+  <a href="https://starcharts.herokuapp.com/gita/bhagavad-gita-frontend"><img alt="Stars" src="https://img.shields.io/github/stars/gita/bhagavad-gita-frontend.svg?style=social"></a>
+</p>
+
 ## 👉 Get Started
 
-Install dependencies
+1. Install dependencies
 
 ```
 npm install
 ```
 
-Run the development server
+2. Request the env variables file `.env` in the #frontend channel of our Slack workspace and copy it to the root folder.
+
+3. Run the development server
 
 ```
 npm run dev
