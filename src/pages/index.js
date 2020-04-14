@@ -17,7 +17,7 @@ function IndexPage(props) {
       image="/static/bhagavadgita.png"
       buttonOnClick={() => {
         // Navigate to about page
-        router.push("/about");
+        router.push("/");
       }}
     ></HeroSection>
   );
