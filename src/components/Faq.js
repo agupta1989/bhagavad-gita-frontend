@@ -1,5 +1,5 @@
-import React from "react";
-import FaqItem from "./FaqItem";
+import React from 'react';
+import FaqItem from './FaqItem';
 
 function Faq(props) {
   return (
@@ -9,7 +9,7 @@ function Faq(props) {
           question={item.question}
           answer={item.answer}
           key={index}
-        ></FaqItem>
+        />
       ))}
     </>
   );

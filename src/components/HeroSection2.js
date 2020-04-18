@@ -1,6 +1,6 @@
-import React from "react";
-import Section from "./Section";
-import SectionHeader from "./SectionHeader";
+import React from 'react';
+import Section from './Section';
+import SectionHeader from './SectionHeader';
 
 function HeroSection2(props) {
   return (
@@ -15,9 +15,9 @@ function HeroSection2(props) {
           title={props.title}
           subtitle={props.subtitle}
           size={1}
-          spaced={true}
+          spaced
           className="has-text-centered"
-        ></SectionHeader>
+        />
       </div>
     </Section>
   );

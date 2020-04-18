@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import AuthForm from "./AuthForm";
-import AuthSocial from "./AuthSocial";
-import AuthFooter from "./AuthFooter";
-import { useRouter } from "next/router";
-import "./Auth.scss";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import FormAlert from './FormAlert';
+import AuthForm from './AuthForm';
+import AuthSocial from './AuthSocial';
+import AuthFooter from './AuthFooter';
+import './Auth.scss';
 
 function Auth(props) {
   const router = useRouter();
@@ -24,7 +24,7 @@ function Auth(props) {
         <FormAlert
           type={formAlert.type}
           message={formAlert.message}
-        ></FormAlert>
+        />
       )}
 
       <AuthForm
@@ -33,9 +33,9 @@ function Auth(props) {
         parentColor={props.parentColor}
         onAuth={handleAuth}
         onFormAlert={handleFormAlert}
-      ></AuthForm>
+      />
 
-      {["signup", "signin"].includes(props.type) && (
+      {['signup', 'signin'].includes(props.type) && (
         <>
           {props.providers && props.providers.length && (
             <>
@@ -45,23 +45,23 @@ function Auth(props) {
               <AuthSocial
                 type={props.type}
                 buttonText={props.typeValues.buttonText}
-                showLastUsed={true}
+                showLastUsed
                 providers={props.providers}
                 onAuth={handleAuth}
                 onError={(message) => {
                   handleFormAlert({
-                    type: "error",
-                    message: message,
+                    type: 'error',
+                    message,
                   });
                 }}
-              ></AuthSocial>
+              />
             </>
           )}
 
           <AuthFooter
             type={props.type}
             typeValues={props.typeValues}
-          ></AuthFooter>
+          />
         </>
       )}
     </>

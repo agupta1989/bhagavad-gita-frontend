@@ -1,7 +1,7 @@
-import React from "react";
-import CenteredColumns from "./CenteredColumns";
-import Avatar from "./Avatar";
-import "./TeamBios.scss";
+import React from 'react';
+import CenteredColumns from './CenteredColumns';
+import Avatar from './Avatar';
+import './TeamBios.scss';
 
 function TeamBios(props) {
   return (
@@ -18,7 +18,7 @@ function TeamBios(props) {
                   image={person.avatar}
                   size={128}
                   alt={person.name}
-                ></Avatar>
+                />
               </div>
               <div className="TeamBios__details">
                 <p className="is-size-5">{person.name}</p>

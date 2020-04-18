@@ -1,15 +1,15 @@
-import React, { useState } from "react";
-import Section from "./Section";
-import ReauthModal from "./ReauthModal";
-import SettingsNav from "./SettingsNav";
-import SettingsGeneral from "./SettingsGeneral";
-import SettingsPassword from "./SettingsPassword";
-import { useAuth } from "./../util/auth.js";
-import "./SettingsSection.scss";
+import React, { useState } from 'react';
+import Section from './Section';
+import ReauthModal from './ReauthModal';
+import SettingsNav from './SettingsNav';
+import SettingsGeneral from './SettingsGeneral';
+import SettingsPassword from './SettingsPassword';
+import { useAuth } from '../util/auth.js';
+import './SettingsSection.scss';
 
 function SettingsSection(props) {
   const auth = useAuth();
-  const [section, setSection] = useState("general");
+  const [section, setSection] = useState('general');
 
   // If an action is security sensitive it will
   // trigger a re-authentication flow.
@@ -20,7 +20,7 @@ function SettingsSection(props) {
   const handleRequireReauth = (callback) => {
     setReauthState({
       show: true,
-      callback: callback,
+      callback,
     });
   };
 
@@ -45,26 +45,26 @@ function SettingsSection(props) {
           provider={auth.user.providers[0]}
           onComplete={handleCompleteReauth}
           onCancel={handleCancelReauth}
-        ></ReauthModal>
+        />
       )}
 
       <SettingsNav
         activeKey={section}
         onSelect={(selected) => setSection(selected)}
-      ></SettingsNav>
+      />
       <div className="SettingsSection__container container">
-        {section === "general" && (
+        {section === 'general' && (
           <SettingsGeneral
             onRequireReauth={handleRequireReauth}
             parentColor={props.color}
-          ></SettingsGeneral>
+          />
         )}
 
-        {section === "password" && (
+        {section === 'password' && (
           <SettingsPassword
             onRequireReauth={handleRequireReauth}
             parentColor={props.color}
-          ></SettingsPassword>
+          />
         )}
       </div>
     </Section>

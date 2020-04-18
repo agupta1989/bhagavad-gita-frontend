@@ -1,4 +1,4 @@
-const withSass = require("@zeit/next-sass");
+const withSass = require('@zeit/next-sass');
 
 let nextConfig = {
   // Environment vars exposed to client-side

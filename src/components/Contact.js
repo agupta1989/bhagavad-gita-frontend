@@ -1,14 +1,16 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import contact from "./../util/contact.js";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import FormAlert from './FormAlert';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import contact from '../util/contact.js';
 
 function Contact(props) {
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
-  const { handleSubmit, register, errors, reset } = useForm();
+  const {
+    handleSubmit, register, errors, reset,
+  } = useForm();
 
   const onSubmit = ({ name, email, message }) => {
     // Show pending indicator
@@ -21,14 +23,14 @@ function Contact(props) {
         reset();
         // Show success alert message
         setFormAlert({
-          type: "success",
-          message: "Your message has been sent!",
+          type: 'success',
+          message: 'Your message has been sent!',
         });
       })
       .catch((error) => {
         // Show error alert message
         setFormAlert({
-          type: "error",
+          type: 'error',
           message: error.message,
         });
       })
@@ -44,7 +46,7 @@ function Contact(props) {
         <FormAlert
           type={formAlert.type}
           message={formAlert.message}
-        ></FormAlert>
+        />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,9 +59,9 @@ function Contact(props) {
                 placeholder="Name"
                 error={errors.name}
                 inputRef={register({
-                  required: "Please enter your name",
+                  required: 'Please enter your name',
                 })}
-              ></FormField>
+              />
             )}
 
             <FormField
@@ -68,9 +70,9 @@ function Contact(props) {
               placeholder="Email"
               error={errors.email}
               inputRef={register({
-                required: "Please enter your email",
+                required: 'Please enter your email',
               })}
-            ></FormField>
+            />
           </div>
         </div>
         <div className="field is-horizontal">
@@ -82,9 +84,9 @@ function Contact(props) {
               rows={5}
               error={errors.message}
               inputRef={register({
-                required: "Please enter a message",
+                required: 'Please enter a message',
               })}
-            ></FormField>
+            />
           </div>
         </div>
         <div className="field is-horizontal">
@@ -94,7 +96,7 @@ function Contact(props) {
                 <SectionButton
                   parentColor={props.parentColor}
                   size="medium"
-                  state={pending ? "loading" : "normal"}
+                  state={pending ? 'loading' : 'normal'}
                 >
                   {props.buttonText}
                 </SectionButton>

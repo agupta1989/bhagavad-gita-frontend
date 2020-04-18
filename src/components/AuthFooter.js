@@ -1,11 +1,11 @@
-import React from "react";
-import Link from "next/link";
-import "./AuthFooter.scss";
+import React from 'react';
+import Link from 'next/link';
+import './AuthFooter.scss';
 
 function AuthFooter(props) {
   return (
     <div className="AuthFooter has-text-centered">
-      {props.type === "signup" && (
+      {props.type === 'signup' && (
         <>
           Have an account already?
           <Link href="/auth/signin">
@@ -14,7 +14,7 @@ function AuthFooter(props) {
         </>
       )}
 
-      {props.type === "signin" && (
+      {props.type === 'signin' && (
         <>
           <Link href="/auth/signup">
             <a>{props.typeValues.linkTextSignup}</a>

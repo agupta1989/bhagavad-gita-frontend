@@ -1,15 +1,15 @@
-import React from "react";
-import "./BackgroundImage.scss";
+import React from 'react';
+import './BackgroundImage.scss';
 
 function BackgroundImage(props) {
   return (
     <div
-      className={"BackgroundImage" + (props.repeat ? " repeat" : "")}
+      className={`BackgroundImage${props.repeat ? ' repeat' : ''}`}
       style={{
-        "--image": `url(${props.image})`,
-        "--opacity": props.opacity,
+        '--image': `url(${props.image})`,
+        '--opacity': props.opacity,
       }}
-    ></div>
+    />
   );
 }
 

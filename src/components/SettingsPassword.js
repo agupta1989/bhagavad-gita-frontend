@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import { useAuth } from "./../util/auth.js";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import FormAlert from './FormAlert';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import { useAuth } from '../util/auth.js';
 
 function SettingsPassword(props) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
 
-  const { register, handleSubmit, errors, reset, getValues } = useForm();
+  const {
+    register, handleSubmit, errors, reset, getValues,
+  } = useForm();
 
   const onSubmit = (data) => {
     // Show pending indicator
@@ -23,12 +25,12 @@ function SettingsPassword(props) {
         reset();
         // Show success alert message
         setFormAlert({
-          type: "success",
-          message: "Your password has been updated",
+          type: 'success',
+          message: 'Your password has been updated',
         });
       })
       .catch((error) => {
-        if (error.code === "auth/requires-recent-login") {
+        if (error.code === 'auth/requires-recent-login') {
           // Remove existing alert message
           setFormAlert(null);
 
@@ -40,7 +42,7 @@ function SettingsPassword(props) {
         } else {
           // Show error alert message
           setFormAlert({
-            type: "error",
+            type: 'error',
             message: error.message,
           });
         }
@@ -57,7 +59,7 @@ function SettingsPassword(props) {
         <FormAlert
           type={formAlert.type}
           message={formAlert.message}
-        ></FormAlert>
+        />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -68,9 +70,9 @@ function SettingsPassword(props) {
           placeholder="Password"
           error={errors.pass}
           inputRef={register({
-            required: "Please enter a password",
+            required: 'Please enter a password',
           })}
-        ></FormField>
+        />
         <FormField
           name="confirmpass"
           type="password"
@@ -78,22 +80,21 @@ function SettingsPassword(props) {
           placeholder="Confirm Password"
           error={errors.confirmPass}
           inputRef={register({
-            required: "Please enter your new password again",
+            required: 'Please enter your new password again',
             validate: (value) => {
               if (value === getValues().pass) {
                 return true;
-              } else {
-                return "This doesn't match your password";
               }
+              return "This doesn't match your password";
             },
           })}
-        ></FormField>
+        />
         <div className="field">
           <div className="control">
             <SectionButton
               parentColor={props.parentColor}
               size="medium"
-              state={pending ? "loading" : "normal"}
+              state={pending ? 'loading' : 'normal'}
             >
               Save
             </SectionButton>

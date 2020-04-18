@@ -1,6 +1,6 @@
-import React from "react";
-import BackgroundImage from "./BackgroundImage";
-import "./Section.scss";
+import React from 'react';
+import BackgroundImage from './BackgroundImage';
+import './Section.scss';
 
 function Section(props) {
   const {
@@ -17,9 +17,9 @@ function Section(props) {
   return (
     <section
       className={
-        "SectionComponent hero section is-block is-relative" +
-        (color ? ` is-${color}` : "") +
-        (size ? ` is-${size}` : "")
+        `SectionComponent hero section is-block is-relative${
+          color ? ` is-${color}` : ''
+        }${size ? ` is-${size}` : ''}`
       }
       {...otherProps}
     >
@@ -28,7 +28,7 @@ function Section(props) {
           image={backgroundImage}
           opacity={backgroundImageOpacity}
           repeat={backgroundImageRepeat}
-        ></BackgroundImage>
+        />
       )}
 
       {props.children}

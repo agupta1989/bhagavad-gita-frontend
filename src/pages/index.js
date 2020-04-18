@@ -1,6 +1,6 @@
-import React from "react";
-import HeroSection from "./../components/HeroSection";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
+import HeroSection from '../components/HeroSection';
 
 function IndexPage(props) {
   const router = useRouter();
@@ -17,9 +17,9 @@ function IndexPage(props) {
       image="/static/bhagavadgita.png"
       buttonOnClick={() => {
         // Navigate to about page
-        router.push("/");
+        router.push('/');
       }}
-    ></HeroSection>
+    />
   );
 }
 

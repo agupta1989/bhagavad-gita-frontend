@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import AuthSocial from "./AuthSocial";
-import { useAuth } from "./../util/auth.js";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import FormAlert from './FormAlert';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import AuthSocial from './AuthSocial';
+import { useAuth } from '../util/auth.js';
 
 function ReauthModal(props) {
   const auth = useAuth();
@@ -25,7 +25,7 @@ function ReauthModal(props) {
         setPending(false);
         // Show error alert message
         setFormAlert({
-          type: "error",
+          type: 'error',
           message: error.message,
         });
       });
@@ -33,7 +33,7 @@ function ReauthModal(props) {
 
   return (
     <div className="modal is-active">
-      <div className="modal-background"></div>
+      <div className="modal-background" />
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">
@@ -44,7 +44,7 @@ function ReauthModal(props) {
               className="delete"
               ariaLabel="close"
               onClick={(e) => props.onCancel()}
-            ></a>
+            />
           </span>
         </header>
         <section className="card-content">
@@ -52,10 +52,10 @@ function ReauthModal(props) {
             <FormAlert
               type={formAlert.type}
               message={formAlert.message}
-            ></FormAlert>
+            />
           )}
 
-          {props.provider === "password" && (
+          {props.provider === 'password' && (
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormField
                 name="pass"
@@ -63,15 +63,15 @@ function ReauthModal(props) {
                 placeholder="Password"
                 error={errors.pass}
                 inputRef={register({
-                  required: "Please enter your password",
+                  required: 'Please enter your password',
                 })}
-              ></FormField>
+              />
               <div className="field">
                 <div className="control">
                   <SectionButton
                     parentColor={props.parentColor}
                     size="medium"
-                    state={pending ? "loading" : "normal"}
+                    state={pending ? 'loading' : 'normal'}
                   >
                     Sign in
                   </SectionButton>
@@ -80,7 +80,7 @@ function ReauthModal(props) {
             </form>
           )}
 
-          {props.provider !== "password" && (
+          {props.provider !== 'password' && (
             <AuthSocial
               type="signin"
               buttonText="Sign in"
@@ -89,11 +89,11 @@ function ReauthModal(props) {
               onAuth={props.onComplete}
               onError={(message) => {
                 setFormAlert({
-                  type: "error",
-                  message: message,
+                  type: 'error',
+                  message,
                 });
               }}
-            ></AuthSocial>
+            />
           )}
         </section>
       </div>

@@ -1,46 +1,40 @@
-import React, { useState } from "react";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import { useAuth } from "./../util/auth.js";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import { useAuth } from '../util/auth.js';
 
 function AuthForm(props) {
   const auth = useAuth();
 
   const [pending, setPending] = useState(false);
-  const { handleSubmit, register, errors, getValues } = useForm();
+  const {
+    handleSubmit, register, errors, getValues,
+  } = useForm();
 
   const submitHandlersByType = {
-    signin: ({ email, pass }) => {
-      return auth.signin(email, pass).then((user) => {
-        // Call auth complete handler
-        props.onAuth(user);
+    signin: ({ email, pass }) => auth.signin(email, pass).then((user) => {
+      // Call auth complete handler
+      props.onAuth(user);
+    }),
+    signup: ({ email, pass }) => auth.signup(email, pass).then((user) => {
+      // Call auth complete handler
+      props.onAuth(user);
+    }),
+    forgotpass: ({ email }) => auth.sendPasswordResetEmail(email).then(() => {
+      // Show success alert message
+      props.onFormAlert({
+        type: 'success',
+        message: 'Password reset email sent',
       });
-    },
-    signup: ({ email, pass }) => {
-      return auth.signup(email, pass).then((user) => {
-        // Call auth complete handler
-        props.onAuth(user);
+    }),
+    changepass: ({ pass }) => auth.confirmPasswordReset(pass).then(() => {
+      // Show success alert message
+      props.onFormAlert({
+        type: 'success',
+        message: 'Your password has been changed',
       });
-    },
-    forgotpass: ({ email }) => {
-      return auth.sendPasswordResetEmail(email).then(() => {
-        // Show success alert message
-        props.onFormAlert({
-          type: "success",
-          message: "Password reset email sent",
-        });
-      });
-    },
-    changepass: ({ pass }) => {
-      return auth.confirmPasswordReset(pass).then(() => {
-        // Show success alert message
-        props.onFormAlert({
-          type: "success",
-          message: "Your password has been changed",
-        });
-      });
-    },
+    }),
   };
 
   // Handle form submission
@@ -56,7 +50,7 @@ function AuthForm(props) {
       .catch((error) => {
         // Show error alert message
         props.onFormAlert({
-          type: "error",
+          type: 'error',
           message: error.message,
         });
       })
@@ -68,19 +62,19 @@ function AuthForm(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {["signup", "signin", "forgotpass"].includes(props.type) && (
+      {['signup', 'signin', 'forgotpass'].includes(props.type) && (
         <FormField
           name="email"
           type="email"
           placeholder="Email"
           error={errors.email}
           inputRef={register({
-            required: "Please enter an email",
+            required: 'Please enter an email',
           })}
-        ></FormField>
+        />
       )}
 
-      {["signup", "signin", "changepass"].includes(props.type) && (
+      {['signup', 'signin', 'changepass'].includes(props.type) && (
         <FormField
           size={props.inputSize}
           name="pass"
@@ -88,12 +82,12 @@ function AuthForm(props) {
           placeholder="Password"
           error={errors.pass}
           inputRef={register({
-            required: "Please enter a password",
+            required: 'Please enter a password',
           })}
-        ></FormField>
+        />
       )}
 
-      {["signup", "changepass"].includes(props.type) && (
+      {['signup', 'changepass'].includes(props.type) && (
         <FormField
           size={props.inputSize}
           name="confirmPass"
@@ -101,16 +95,15 @@ function AuthForm(props) {
           placeholder="Confirm Password"
           error={errors.confirmPass}
           inputRef={register({
-            required: "Please enter your password again",
+            required: 'Please enter your password again',
             validate: (value) => {
               if (value === getValues().pass) {
                 return true;
-              } else {
-                return "This doesn't match your password";
               }
+              return "This doesn't match your password";
             },
           })}
-        ></FormField>
+        />
       )}
 
       <div className="field">
@@ -118,8 +111,8 @@ function AuthForm(props) {
           <SectionButton
             parentColor={props.parentColor}
             size="medium"
-            fullWidth={true}
-            state={pending ? "loading" : "normal"}
+            fullWidth
+            state={pending ? 'loading' : 'normal'}
           >
             {props.typeValues.buttonText}
           </SectionButton>

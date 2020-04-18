@@ -1,8 +1,8 @@
-import React from "react";
-import Section from "./Section";
-import SectionHeader from "./SectionHeader";
-import Contact from "./Contact";
-import "./ContactSection.scss";
+import React from 'react';
+import Section from './Section';
+import SectionHeader from './SectionHeader';
+import Contact from './Contact';
+import './ContactSection.scss';
 
 function ContactSection(props) {
   return (
@@ -17,14 +17,14 @@ function ContactSection(props) {
           title={props.title}
           subtitle={props.subtitle}
           size={3}
-          spaced={true}
+          spaced
           className="has-text-centered"
-        ></SectionHeader>
+        />
         <Contact
           parentColor={props.parentColor}
           showNameField={props.showNameField}
           buttonText={props.buttonText}
-        ></Contact>
+        />
       </div>
     </Section>
   );

@@ -1,32 +1,34 @@
-import React from "react";
+import React from 'react';
 
 function FormField(props) {
-  const { error, type, inputRef, ...inputProps } = props;
+  const {
+    error, type, inputRef, ...inputProps
+  } = props;
 
   return (
     <div className="field">
       {props.label && (
-        <label className="label" for="">
+        <label className="label" htmlFor="">
           {props.label}
         </label>
       )}
 
       <div className="control">
-        {type === "textarea" && (
+        {type === 'textarea' && (
           <textarea
             className="textarea is-medium"
             ref={inputRef}
             {...inputProps}
-          ></textarea>
+          />
         )}
 
-        {type !== "textarea" && (
+        {type !== 'textarea' && (
           <input
             className="input is-medium"
             ref={inputRef}
             type={type}
             {...inputProps}
-          ></input>
+          />
         )}
       </div>
 

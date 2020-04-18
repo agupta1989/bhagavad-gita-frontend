@@ -5,19 +5,19 @@ export default (req, res) => {
   // For now we'll return an array of fake items
   const items = [
     {
-      id: "1",
-      owner: owner,
-      name: "Fake Item 1",
+      id: '1',
+      owner,
+      name: 'Fake Item 1',
     },
     {
-      id: "2",
-      owner: owner,
-      name: "Fake Item 2",
+      id: '2',
+      owner,
+      name: 'Fake Item 2',
     },
   ];
 
   res.send({
-    status: "success",
+    status: 'success',
     data: items,
   });
 };

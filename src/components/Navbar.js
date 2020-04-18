@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import NavbarContainer from "./NavbarContainer";
-import Link from "next/link";
-import { useAuth } from "./../util/auth.js";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import NavbarContainer from './NavbarContainer';
+import { useAuth } from '../util/auth.js';
 
 function Navbar(props) {
   const auth = useAuth();
@@ -14,20 +14,20 @@ function Navbar(props) {
           <div className="navbar-item">
             <Link href="/">
               <a>
-                <img className="image" src={props.logo} alt="Logo"></img>
+                <img className="image" src={props.logo} alt="Logo" />
               </a>
             </Link>
           </div>
           <div
-            className={"navbar-burger burger" + (menuOpen ? " is-active" : "")}
+            className={`navbar-burger burger${menuOpen ? ' is-active' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </div>
         </div>
-        <div className={"navbar-menu" + (menuOpen ? " is-active" : "")}>
+        <div className={`navbar-menu${menuOpen ? ' is-active' : ''}`}>
           <div className="navbar-end">
             {auth.user && (
               <div className="navbar-item has-dropdown is-hoverable">
@@ -44,7 +44,7 @@ function Navbar(props) {
                     <a className="navbar-item">Settings</a>
                   </Link>
 
-                  <hr className="dropdown-divider"></hr>
+                  <hr className="dropdown-divider" />
 
                   <Link href="/auth/signout">
                     <a

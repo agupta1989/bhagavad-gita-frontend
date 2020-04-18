@@ -1,7 +1,7 @@
-import React from "react";
-import Section from "./Section";
-import SectionHeader from "./SectionHeader";
-import Faq from "./Faq";
+import React from 'react';
+import Section from './Section';
+import SectionHeader from './SectionHeader';
+import Faq from './Faq';
 
 function FaqSection(props) {
   return (
@@ -16,38 +16,38 @@ function FaqSection(props) {
           title={props.title}
           subtitle={props.subtitle}
           size={3}
-          spaced={true}
+          spaced
           className="has-text-centered"
-        ></SectionHeader>
+        />
         <Faq
           items={[
             {
-              question: "Integer ornare neque mauris?",
+              question: 'Integer ornare neque mauris?',
               answer:
-                "Integer ornare neque mauris, ac vulputate lacus venenatis et. Pellentesque ut ultrices purus. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.",
+                'Integer ornare neque mauris, ac vulputate lacus venenatis et. Pellentesque ut ultrices purus. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.',
             },
             {
-              question: "Lorem ipsum dolor sit amet?",
+              question: 'Lorem ipsum dolor sit amet?',
               answer:
-                "Nunc nulla mauris, laoreet vel cursus lacinia, consectetur sit amet tellus. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.",
+                'Nunc nulla mauris, laoreet vel cursus lacinia, consectetur sit amet tellus. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.',
             },
             {
-              question: "Suspendisse ut tincidunt?",
+              question: 'Suspendisse ut tincidunt?',
               answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, metus et mattis ullamcorper. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, metus et mattis ullamcorper. Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.',
             },
             {
-              question: "Ut enim ad minim veniam?",
+              question: 'Ut enim ad minim veniam?',
               answer:
-                "Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.",
+                'Suspendisse ut tincidunt eros. In velit mi, rhoncus dictum neque a, tincidunt lobortis justo.',
             },
             {
-              question: "In velit mi, rhoncus dictum neque?",
+              question: 'In velit mi, rhoncus dictum neque?',
               answer:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.",
+                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.',
             },
           ]}
-        ></Faq>
+        />
       </div>
     </Section>
   );

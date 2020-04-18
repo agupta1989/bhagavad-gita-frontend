@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import DashboardPlaceholder from "./../components/DashboardPlaceholder";
-import { useAuth } from "./../util/auth.js";
-import { useRouter } from "next/router";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import DashboardPlaceholder from '../components/DashboardPlaceholder';
+import { useAuth } from '../util/auth.js';
 
 function DashboardPage(props) {
   const auth = useAuth();
@@ -11,7 +11,7 @@ function DashboardPage(props) {
   // if not signed in.
   useEffect(() => {
     if (auth.user === false) {
-      router.push("/auth/signin");
+      router.push('/auth/signin');
     }
   }, [auth, router]);
 
@@ -21,7 +21,7 @@ function DashboardPage(props) {
       size="large"
       title="Dashboard"
       subtitle="Dashboard components are coming to the Divjoy library soon. For now, you can implement a custom dashboard here after exporting your code."
-    ></DashboardPlaceholder>
+    />
   );
 }
 

@@ -1,14 +1,14 @@
-const requireAuth = require("./_require-auth.js");
+const requireAuth = require('./_require-auth.js');
 
 export default requireAuth((req, res) => {
   const authUser = req.user;
-  const body = req.body;
+  const { body } = req;
 
   // Make sure authenticated user can only create themself in the database
   if (body.uid !== authUser.uid) {
     return res.send({
-      status: "error",
-      message: "Created user must have the same uid as authenticated user",
+      status: 'error',
+      message: 'Created user must have the same uid as authenticated user',
     });
   }
 
@@ -17,7 +17,7 @@ export default requireAuth((req, res) => {
   const user = body;
 
   res.send({
-    status: "success",
+    status: 'success',
     data: user,
   });
 });

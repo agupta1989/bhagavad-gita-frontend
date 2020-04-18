@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import SettingsSection from "./../components/SettingsSection";
-import { useAuth } from "./../util/auth.js";
-import { useRouter } from "next/router";
+import React, { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import SettingsSection from '../components/SettingsSection';
+import { useAuth } from '../util/auth.js';
 
 function SettingsPage(props) {
   const auth = useAuth();
@@ -10,13 +10,13 @@ function SettingsPage(props) {
   // Redirect if not signed in.
   useEffect(() => {
     if (auth.user === false) {
-      router.push("/auth/signin");
+      router.push('/auth/signin');
     }
   }, [auth, router]);
 
   // Show loading until we have user
   if (!auth.user) {
-    return "Loading...";
+    return 'Loading...';
   }
 
   return (
@@ -25,7 +25,7 @@ function SettingsPage(props) {
       size="medium"
       backgroundImage=""
       backgroundImageOpacity={1}
-    ></SettingsSection>
+    />
   );
 }
 

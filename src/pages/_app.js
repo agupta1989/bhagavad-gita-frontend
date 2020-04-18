@@ -1,9 +1,9 @@
-import React from "react";
-import "./../styles/global.scss";
-import Navbar from "./../components/Navbar";
-import Footer from "./../components/Footer";
-import "./../util/analytics.js";
-import { ProvideAuth } from "./../util/auth.js";
+import React from 'react';
+import '../styles/global.scss';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import '../util/analytics.js';
+import { ProvideAuth } from '../util/auth.js';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -11,9 +11,9 @@ function MyApp({ Component, pageProps }) {
       <>
         <Navbar
           color="white"
-          spaced={true}
+          spaced
           logo="https://uploads.divjoy.com/logo.svg"
-        ></Navbar>
+        />
 
         <Component {...pageProps} />
 
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
           backgroundImageOpacity={1}
           copyright="© 2020 The Gita Initiative"
           logo="https://uploads.divjoy.com/logo.svg"
-        ></Footer>
+        />
       </>
     </ProvideAuth>
   );

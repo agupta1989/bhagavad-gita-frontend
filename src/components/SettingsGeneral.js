@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import { useAuth } from "./../util/auth.js";
-import { useForm } from "react-hook-form";
-import { useUser, updateUser } from "./../util/db.js";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import FormAlert from './FormAlert';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import { useAuth } from '../util/auth.js';
+import { useUser, updateUser } from '../util/db.js';
 
 function SettingsGeneral(props) {
   const auth = useAuth();
@@ -23,18 +23,17 @@ function SettingsGeneral(props) {
 
     return auth
       .updateEmail(data.email)
-      .then(() => {
+      .then(() =>
         // Update user in database
-        return updateUser(user.uid, data).then(() => {
+        updateUser(user.uid, data).then(() => {
           // Show success alert message
           setFormAlert({
-            type: "success",
-            message: "Your profile has been updated",
+            type: 'success',
+            message: 'Your profile has been updated',
           });
-        });
-      })
+        }))
       .catch((error) => {
-        if (error.code === "auth/requires-recent-login") {
+        if (error.code === 'auth/requires-recent-login') {
           // Remove existing alert message
           setFormAlert(null);
 
@@ -46,7 +45,7 @@ function SettingsGeneral(props) {
         } else {
           // Show error alert message
           setFormAlert({
-            type: "error",
+            type: 'error',
             message: error.message,
           });
         }
@@ -59,8 +58,8 @@ function SettingsGeneral(props) {
 
   // Show loading indicator until
   // database query completes.
-  if (status === "loading") {
-    return "Loading ...";
+  if (status === 'loading') {
+    return 'Loading ...';
   }
 
   return (
@@ -69,7 +68,7 @@ function SettingsGeneral(props) {
         <FormAlert
           type={formAlert.type}
           message={formAlert.message}
-        ></FormAlert>
+        />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -81,9 +80,9 @@ function SettingsGeneral(props) {
           placeholder="Name"
           error={errors.name}
           inputRef={register({
-            required: "Please enter your name",
+            required: 'Please enter your name',
           })}
-        ></FormField>
+        />
         <FormField
           name="email"
           type="email"
@@ -92,15 +91,15 @@ function SettingsGeneral(props) {
           placeholder="Email"
           error={errors.email}
           inputRef={register({
-            required: "Please enter your email",
+            required: 'Please enter your email',
           })}
-        ></FormField>
+        />
         <div className="field">
           <div className="control">
             <SectionButton
               parentColor={props.parentColor}
               size="medium"
-              state={pending ? "loading" : "normal"}
+              state={pending ? 'loading' : 'normal'}
             >
               Save
             </SectionButton>

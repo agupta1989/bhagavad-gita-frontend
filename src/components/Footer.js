@@ -1,7 +1,7 @@
-import React from "react";
-import Section from "./Section";
-import Link from "next/link";
-import "./Footer.scss";
+import React from 'react';
+import Link from 'next/link';
+import Section from './Section';
+import './Footer.scss';
 
 function Footer(props) {
   return (
@@ -15,7 +15,7 @@ function Footer(props) {
         <div className="brand left">
           <Link href="/">
             <a>
-              <img src={props.logo} alt="Logo"></img>
+              <img src={props.logo} alt="Logo" />
             </a>
           </Link>
         </div>
@@ -47,7 +47,7 @@ function Footer(props) {
             rel="noopener noreferrer"
           >
             <span className="icon">
-              <i className="fab fa-twitter"></i>
+              <i className="fab fa-twitter" />
             </span>
           </a>
           <a
@@ -56,7 +56,7 @@ function Footer(props) {
             rel="noopener noreferrer"
           >
             <span className="icon">
-              <i className="fab fa-facebook-f"></i>
+              <i className="fab fa-facebook-f" />
             </span>
           </a>
           <a
@@ -65,7 +65,7 @@ function Footer(props) {
             rel="noopener noreferrer"
           >
             <span className="icon">
-              <i className="fab fa-instagram"></i>
+              <i className="fab fa-instagram" />
             </span>
           </a>
         </div>

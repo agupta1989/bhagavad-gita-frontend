@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "./../util/auth.js";
-import "./AuthSocial.scss";
+import React, { useEffect, useState } from 'react';
+import { useAuth } from '../util/auth.js';
+import './AuthSocial.scss';
 
 function AuthSocial(props) {
   const auth = useAuth();
@@ -8,10 +8,10 @@ function AuthSocial(props) {
   const [lastUsed, setLastUsed] = useState(null);
 
   const providerDisplayNames = {
-    google: "Google",
-    facebook: "Facebook",
-    twitter: "Twitter",
-    github: "GitHub",
+    google: 'Google',
+    facebook: 'Facebook',
+    twitter: 'Twitter',
+    github: 'GitHub',
   };
 
   const onSigninWithProvider = (provider) => {
@@ -21,7 +21,7 @@ function AuthSocial(props) {
       .then((user) => {
         // Remember this provider was last used
         // so we can indicate for next login.
-        localStorage.setItem("lastUsedAuthProvider", provider);
+        localStorage.setItem('lastUsedAuthProvider', provider);
         props.onAuth(user);
       })
       .catch((error) => {
@@ -35,7 +35,7 @@ function AuthSocial(props) {
   // Get value of last used auth provider
   useEffect(() => {
     if (props.showLastUsed) {
-      const lastUsed = localStorage.getItem("lastUsedAuthProvider");
+      const lastUsed = localStorage.getItem('lastUsedAuthProvider');
       if (lastUsed) {
         setLastUsed(lastUsed);
       }
@@ -47,8 +47,8 @@ function AuthSocial(props) {
       {props.providers.map((provider) => (
         <button
           className={
-            "button is-medium is-fullwidth" +
-            (pending === provider ? " is-loading" : "")
+            `button is-medium is-fullwidth${
+              pending === provider ? ' is-loading' : ''}`
           }
           onClick={() => {
             onSigninWithProvider(provider);
@@ -59,10 +59,13 @@ function AuthSocial(props) {
             <img
               src={`https://uploads.divjoy.com/icon-${provider}.svg`}
               alt={providerDisplayNames[provider]}
-            ></img>
+            />
           </div>
           <span>
-            {props.buttonText} with {providerDisplayNames[provider]}
+            {props.buttonText}
+            {' '}
+            with
+            {providerDisplayNames[provider]}
           </span>
 
           {provider === lastUsed && (
