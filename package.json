@@ -25,7 +25,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint '**/*.js' --ignore-pattern node_modules/"
+    "lint": "eslint '**/*.js' --ignore-pattern node_modules/",
+    "lint:fix": "eslint '**/*.js' --ignore-pattern node_modules/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
