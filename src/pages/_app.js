@@ -1,9 +1,11 @@
 import React from 'react';
-import '../styles/global.scss';
+import PropTypes from 'prop-types';
+
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import '../util/analytics.js';
-import { ProvideAuth } from '../util/auth.js';
+import '../util/analytics';
+import { ProvideAuth } from '../util/auth';
+import '../styles/global.scss';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -30,4 +32,8 @@ function MyApp({ Component, pageProps }) {
   );
 }
 
+MyApp.propTypes = {
+  Component: PropTypes.node.isRequired,
+  pageProps: PropTypes.node.isRequired,
+};
 export default MyApp;

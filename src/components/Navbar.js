@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import NavbarContainer from './NavbarContainer';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 
 function Navbar(props) {
   const auth = useAuth();

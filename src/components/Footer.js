@@ -1,21 +1,31 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import { string, number } from 'prop-types';
+
 import Link from 'next/link';
 import Section from './Section';
 import './Footer.scss';
 
-function Footer(props) {
+function Footer({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+  copyright,
+  logo,
+}) {
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       <div className="FooterComponent__container container">
         <div className="brand left">
           <Link href="/">
             <a>
-              <img src={props.logo} alt="Logo" />
+              <img src={logo} alt="Logo" />
             </a>
           </Link>
         </div>
@@ -69,10 +79,19 @@ function Footer(props) {
             </span>
           </a>
         </div>
-        <div className="copyright left">{props.copyright}</div>
+        <div className="copyright left">{copyright}</div>
       </div>
     </Section>
   );
 }
+
+Footer.propTypes = {
+  color: string.isRequired,
+  logo: string.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: number.isRequired,
+  copyright: string.isRequired,
+  size: number.isRequired,
+};
 
 export default Footer;

@@ -1,9 +1,9 @@
 import React from 'react';
 
-function CenteredColumns(props) {
+function CenteredColumns({ children }) {
   return (
     <div className="columns is-centered is-variable is-4 is-multiline">
-      {props.children}
+      {children}
     </div>
   );
 }

@@ -16,7 +16,7 @@ export default requireAuth((req, res) => {
   // For now we'll return a fake item containing data we passed in request
   const item = body;
 
-  res.send({
+  return res.send({
     status: 'success',
     data: item,
   });

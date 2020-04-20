@@ -21,7 +21,7 @@ export default requireAuth((req, res) => {
     name: 'Bob',
   };
 
-  res.send({
+  return res.send({
     status: 'success',
     data: user,
   });

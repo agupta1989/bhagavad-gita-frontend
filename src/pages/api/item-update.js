@@ -31,7 +31,7 @@ export default requireAuth((req, res) => {
     ...body,
   };
 
-  res.send({
+  return res.send({
     status: 'success',
     data: item,
   });

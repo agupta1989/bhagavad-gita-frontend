@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import PropTypes from 'prop-types';
 import FormAlert from './FormAlert';
 import FormField from './FormField';
 import SectionButton from './SectionButton';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 
-function SettingsPassword(props) {
+function SettingsPassword({ parentColor, onRequireReauth }) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
@@ -36,7 +37,7 @@ function SettingsPassword(props) {
 
           // Show re-authentication modal and
           // then re-call onSubmit() when done.
-          props.onRequireReauth(() => {
+          onRequireReauth(() => {
             onSubmit({ pass: data.pass });
           });
         } else {
@@ -56,10 +57,7 @@ function SettingsPassword(props) {
   return (
     <>
       {formAlert && (
-        <FormAlert
-          type={formAlert.type}
-          message={formAlert.message}
-        />
+        <FormAlert type={formAlert.type} message={formAlert.message} />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,7 +90,7 @@ function SettingsPassword(props) {
         <div className="field">
           <div className="control">
             <SectionButton
-              parentColor={props.parentColor}
+              parentColor={parentColor}
               size="medium"
               state={pending ? 'loading' : 'normal'}
             >
@@ -104,5 +102,10 @@ function SettingsPassword(props) {
     </>
   );
 }
+
+SettingsPassword.propTypes = {
+  parentColor: PropTypes.string.isRequired,
+  onRequireReauth: PropTypes.func.isRequired,
+};
 
 export default SettingsPassword;

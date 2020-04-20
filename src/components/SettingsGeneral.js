@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import FormAlert from './FormAlert';
 import FormField from './FormField';
 import SectionButton from './SectionButton';
-import { useAuth } from '../util/auth.js';
-import { useUser, updateUser } from '../util/db.js';
+import { useAuth } from '../util/auth';
+import { useUser, updateUser } from '../util/db';
 
 function SettingsGeneral(props) {
   const auth = useAuth();
@@ -65,10 +65,7 @@ function SettingsGeneral(props) {
   return (
     <>
       {formAlert && (
-        <FormAlert
-          type={formAlert.type}
-          message={formAlert.message}
-        />
+        <FormAlert type={formAlert.type} message={formAlert.message} />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>

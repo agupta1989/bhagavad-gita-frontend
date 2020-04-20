@@ -1,7 +1,7 @@
 import React from 'react';
 import FaqSection from '../components/FaqSection';
 
-function FaqPage(props) {
+function FaqPage() {
   return (
     <FaqSection
       color="white"

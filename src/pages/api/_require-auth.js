@@ -19,7 +19,7 @@ const requireAuth = (fn) => (req, res) => {
       req.user = userInfo;
       return fn(req, res);
     })
-    .catch((error) => {
+    .catch(() => {
       // If there's an error assume token is expired
       res.status(401).send({
         status: 'error',

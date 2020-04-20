@@ -1,20 +1,28 @@
 import React from 'react';
+import { string, number } from 'prop-types';
 import Section from './Section';
 import SectionHeader from './SectionHeader';
 import TeamBios from './TeamBios';
 
-function TeamBiosSection(props) {
+function TeamBiosSection({
+  color,
+  size,
+  subtitle,
+  title,
+  backgroundImage,
+  backgroundImageOpacity,
+}) {
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       <div className="container">
         <SectionHeader
-          title={props.title}
-          subtitle={props.subtitle}
+          title={title}
+          subtitle={subtitle}
           size={3}
           spaced
           className="has-text-centered"
@@ -57,5 +65,14 @@ function TeamBiosSection(props) {
     </Section>
   );
 }
+
+TeamBiosSection.propTypes = {
+  color: string.isRequired,
+  size: number.isRequired,
+  subtitle: string.isRequired,
+  title: string.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: string.isRequired,
+};
 
 export default TeamBiosSection;

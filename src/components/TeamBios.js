@@ -1,24 +1,21 @@
 import React from 'react';
+import { arrayOf, shape } from 'prop-types';
 import CenteredColumns from './CenteredColumns';
 import Avatar from './Avatar';
 import './TeamBios.scss';
 
-function TeamBios(props) {
+function TeamBios({ people }) {
   return (
     <CenteredColumns>
-      {props.people.map((person, index) => (
+      {people.map((person) => (
         <div
           className="column is-half-tablet is-one-third-desktop is-flex"
-          key={index}
+          key={person.name}
         >
           <div className="TeamBios__card card is-flex">
             <div className="TeamBios__card-content card-content is-flex has-text-centered">
               <div className="TeamBios__avatar-wrapper">
-                <Avatar
-                  image={person.avatar}
-                  size={128}
-                  alt={person.name}
-                />
+                <Avatar image={person.avatar} size={128} alt={person.name} />
               </div>
               <div className="TeamBios__details">
                 <p className="is-size-5">{person.name}</p>
@@ -34,5 +31,9 @@ function TeamBios(props) {
     </CenteredColumns>
   );
 }
+
+TeamBios.propTypes = {
+  people: arrayOf(shape({})).isRequired,
+};
 
 export default TeamBios;

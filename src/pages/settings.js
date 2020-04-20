@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import SettingsSection from '../components/SettingsSection';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 
-function SettingsPage(props) {
+function SettingsPage() {
   const auth = useAuth();
   const router = useRouter();
 

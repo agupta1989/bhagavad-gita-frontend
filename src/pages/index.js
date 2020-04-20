@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import HeroSection from '../components/HeroSection';
 
-function IndexPage(props) {
+function IndexPage() {
   const router = useRouter();
 
   return (

@@ -33,7 +33,7 @@ export default (req, res) => {
         },
       },
     },
-    (err, data) => {
+    (err) => {
       if (err) {
         res.send({ status: 'error' });
       } else {

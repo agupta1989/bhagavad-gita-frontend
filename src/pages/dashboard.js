@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import DashboardPlaceholder from '../components/DashboardPlaceholder';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 
-function DashboardPage(props) {
+function DashboardPage() {
   const auth = useAuth();
   const router = useRouter();
 

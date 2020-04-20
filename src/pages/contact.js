@@ -1,7 +1,7 @@
 import React from 'react';
 import ContactSection from '../components/ContactSection';
 
-function ContactPage(props) {
+function ContactPage() {
   return (
     <ContactSection
       color="white"

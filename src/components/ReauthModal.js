@@ -4,7 +4,7 @@ import FormAlert from './FormAlert';
 import FormField from './FormField';
 import SectionButton from './SectionButton';
 import AuthSocial from './AuthSocial';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 
 function ReauthModal(props) {
   const auth = useAuth();
@@ -49,10 +49,7 @@ function ReauthModal(props) {
         </header>
         <section className="card-content">
           {formAlert && (
-            <FormAlert
-              type={formAlert.type}
-              message={formAlert.message}
-            />
+            <FormAlert type={formAlert.type} message={formAlert.message} />
           )}
 
           {props.provider === 'password' && (

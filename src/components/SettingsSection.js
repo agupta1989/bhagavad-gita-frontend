@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Section from './Section';
 import ReauthModal from './ReauthModal';
 import SettingsNav from './SettingsNav';
 import SettingsGeneral from './SettingsGeneral';
 import SettingsPassword from './SettingsPassword';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 import './SettingsSection.scss';
 
-function SettingsSection(props) {
+function SettingsSection({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+}) {
   const auth = useAuth();
   const [section, setSection] = useState('general');
 
@@ -35,10 +41,10 @@ function SettingsSection(props) {
 
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       {reauthState.show && (
         <ReauthModal
@@ -56,19 +62,26 @@ function SettingsSection(props) {
         {section === 'general' && (
           <SettingsGeneral
             onRequireReauth={handleRequireReauth}
-            parentColor={props.color}
+            parentColor={color}
           />
         )}
 
         {section === 'password' && (
           <SettingsPassword
             onRequireReauth={handleRequireReauth}
-            parentColor={props.color}
+            parentColor={color}
           />
         )}
       </div>
     </Section>
   );
 }
+
+SettingsSection.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
+  backgroundImageOpacity: PropTypes.string.isRequired,
+};
 
 export default SettingsSection;

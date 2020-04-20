@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FormField from './FormField';
 import SectionButton from './SectionButton';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 
 function AuthForm(props) {
   const auth = useAuth();
