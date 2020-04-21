@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { bool, string } from 'prop-types';
+
 import FormAlert from './FormAlert';
 import FormField from './FormField';
 import SectionButton from './SectionButton';
-import contact from '../util/contact.js';
+import contact from '../util/contact';
 
-function Contact(props) {
+function Contact({ showNameField, parentColor, buttonText }) {
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
   const {
@@ -43,16 +45,13 @@ function Contact(props) {
   return (
     <>
       {formAlert && (
-        <FormAlert
-          type={formAlert.type}
-          message={formAlert.message}
-        />
+        <FormAlert type={formAlert.type} message={formAlert.message} />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="field is-horizontal">
           <div className="field-body">
-            {props.showNameField && (
+            {showNameField && (
               <FormField
                 name="name"
                 type="text"
@@ -94,11 +93,11 @@ function Contact(props) {
             <div className="field">
               <div className="control">
                 <SectionButton
-                  parentColor={props.parentColor}
+                  parentColor={parentColor}
                   size="medium"
                   state={pending ? 'loading' : 'normal'}
                 >
-                  {props.buttonText}
+                  {buttonText}
                 </SectionButton>
               </div>
             </div>
@@ -109,4 +108,9 @@ function Contact(props) {
   );
 }
 
+Contact.propTypes = {
+  showNameField: bool.isRequired,
+  parentColor: string.isRequired,
+  buttonText: string.isRequired,
+};
 export default Contact;

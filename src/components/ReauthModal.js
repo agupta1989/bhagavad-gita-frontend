@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { func, string } from 'prop-types';
 import { useForm } from 'react-hook-form';
 import FormAlert from './FormAlert';
 import FormField from './FormField';
@@ -6,7 +7,9 @@ import SectionButton from './SectionButton';
 import AuthSocial from './AuthSocial';
 import { useAuth } from '../util/auth';
 
-function ReauthModal(props) {
+function ReauthModal({
+  onComplete, onCancel, provider, parentColor,
+}) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
@@ -19,7 +22,7 @@ function ReauthModal(props) {
 
     auth
       .signin(auth.user.email, pass)
-      .then(() => props.onComplete())
+      .then(() => onComplete())
       .catch((error) => {
         // Hide pending indicator
         setPending(false);
@@ -40,10 +43,11 @@ function ReauthModal(props) {
             Please sign in again to complete this action
           </p>
           <span className="card-header-icon">
+            {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
             <a
               className="delete"
               ariaLabel="close"
-              onClick={(e) => props.onCancel()}
+              onClick={() => onCancel()}
             />
           </span>
         </header>
@@ -52,7 +56,7 @@ function ReauthModal(props) {
             <FormAlert type={formAlert.type} message={formAlert.message} />
           )}
 
-          {props.provider === 'password' && (
+          {provider === 'password' && (
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormField
                 name="pass"
@@ -66,7 +70,7 @@ function ReauthModal(props) {
               <div className="field">
                 <div className="control">
                   <SectionButton
-                    parentColor={props.parentColor}
+                    parentColor={parentColor}
                     size="medium"
                     state={pending ? 'loading' : 'normal'}
                   >
@@ -77,13 +81,13 @@ function ReauthModal(props) {
             </form>
           )}
 
-          {props.provider !== 'password' && (
+          {provider !== 'password' && (
             <AuthSocial
               type="signin"
               buttonText="Sign in"
               showLastUsed={false}
-              providers={[props.provider]}
-              onAuth={props.onComplete}
+              providers={[provider]}
+              onAuth={onComplete}
               onError={(message) => {
                 setFormAlert({
                   type: 'error',
@@ -97,5 +101,12 @@ function ReauthModal(props) {
     </div>
   );
 }
+
+ReauthModal.propTypes = {
+  onComplete: func.isRequired,
+  onCancel: func.isRequired,
+  provider: string.isRequired,
+  parentColor: string.isRequired,
+};
 
 export default ReauthModal;

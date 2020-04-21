@@ -1,20 +1,28 @@
 import React from 'react';
+import { string, number } from 'prop-types';
 import Section from './Section';
 import SectionHeader from './SectionHeader';
 import Faq from './Faq';
 
-function FaqSection(props) {
+function FaqSection({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+  title,
+  subtitle,
+}) {
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       <div className="container">
         <SectionHeader
-          title={props.title}
-          subtitle={props.subtitle}
+          title={title}
+          subtitle={subtitle}
           size={3}
           spaced
           className="has-text-centered"
@@ -52,5 +60,14 @@ function FaqSection(props) {
     </Section>
   );
 }
+
+FaqSection.propTypes = {
+  color: string.isRequired,
+  size: number.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: number.isRequired,
+  title: string.isRequired,
+  subtitle: string.isRequired,
+};
 
 export default FaqSection;

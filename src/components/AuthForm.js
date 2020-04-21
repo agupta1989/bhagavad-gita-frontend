@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import {
+  func, string, number, shape,
+} from 'prop-types';
+
 import FormField from './FormField';
 import SectionButton from './SectionButton';
 import { useAuth } from '../util/auth';
 
-function AuthForm(props) {
+function AuthForm({
+  onAuth,
+  onFormAlert,
+  type,
+  inputSize,
+  parentColor,
+  typeValues,
+}) {
   const auth = useAuth();
 
   const [pending, setPending] = useState(false);
@@ -15,22 +26,22 @@ function AuthForm(props) {
   const submitHandlersByType = {
     signin: ({ email, pass }) => auth.signin(email, pass).then((user) => {
       // Call auth complete handler
-      props.onAuth(user);
+      onAuth(user);
     }),
     signup: ({ email, pass }) => auth.signup(email, pass).then((user) => {
       // Call auth complete handler
-      props.onAuth(user);
+      onAuth(user);
     }),
     forgotpass: ({ email }) => auth.sendPasswordResetEmail(email).then(() => {
       // Show success alert message
-      props.onFormAlert({
+      onFormAlert({
         type: 'success',
         message: 'Password reset email sent',
       });
     }),
     changepass: ({ pass }) => auth.confirmPasswordReset(pass).then(() => {
       // Show success alert message
-      props.onFormAlert({
+      onFormAlert({
         type: 'success',
         message: 'Your password has been changed',
       });
@@ -43,13 +54,13 @@ function AuthForm(props) {
     setPending(true);
 
     // Call submit handler for auth type
-    submitHandlersByType[props.type]({
+    submitHandlersByType[type]({
       email,
       pass,
     })
       .catch((error) => {
         // Show error alert message
-        props.onFormAlert({
+        onFormAlert({
           type: 'error',
           message: error.message,
         });
@@ -62,7 +73,7 @@ function AuthForm(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {['signup', 'signin', 'forgotpass'].includes(props.type) && (
+      {['signup', 'signin', 'forgotpass'].includes(type) && (
         <FormField
           name="email"
           type="email"
@@ -74,9 +85,9 @@ function AuthForm(props) {
         />
       )}
 
-      {['signup', 'signin', 'changepass'].includes(props.type) && (
+      {['signup', 'signin', 'changepass'].includes(type) && (
         <FormField
-          size={props.inputSize}
+          size={inputSize}
           name="pass"
           type="password"
           placeholder="Password"
@@ -87,9 +98,9 @@ function AuthForm(props) {
         />
       )}
 
-      {['signup', 'changepass'].includes(props.type) && (
+      {['signup', 'changepass'].includes(type) && (
         <FormField
-          size={props.inputSize}
+          size={inputSize}
           name="confirmPass"
           type="password"
           placeholder="Confirm Password"
@@ -109,12 +120,12 @@ function AuthForm(props) {
       <div className="field">
         <p className="control ">
           <SectionButton
-            parentColor={props.parentColor}
+            parentColor={parentColor}
             size="medium"
             fullWidth
             state={pending ? 'loading' : 'normal'}
           >
-            {props.typeValues.buttonText}
+            {typeValues.buttonText}
           </SectionButton>
         </p>
       </div>
@@ -122,4 +133,12 @@ function AuthForm(props) {
   );
 }
 
+AuthForm.propTypes = {
+  onAuth: func.isRequired,
+  onFormAlert: func.isRequired,
+  type: string.isRequired,
+  inputSize: number.isRequired,
+  parentColor: string.isRequired,
+  typeValues: shape({}).isRequired,
+};
 export default AuthForm;

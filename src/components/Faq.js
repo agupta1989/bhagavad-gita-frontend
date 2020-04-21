@@ -1,18 +1,23 @@
 import React from 'react';
+import { arrayOf, shape } from 'prop-types';
+
 import FaqItem from './FaqItem';
 
-function Faq(props) {
+function Faq({ items }) {
   return (
     <>
-      {props.items.map((item, index) => (
+      {items.map((item) => (
         <FaqItem
           question={item.question}
           answer={item.answer}
-          key={index}
+          key={item.question}
         />
       ))}
     </>
   );
 }
 
+Faq.propTypes = {
+  items: arrayOf(shape({})).isRequired,
+};
 export default Faq;

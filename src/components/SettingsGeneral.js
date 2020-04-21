@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { string, func } from 'prop-types';
 import FormAlert from './FormAlert';
 import FormField from './FormField';
 import SectionButton from './SectionButton';
 import { useAuth } from '../util/auth';
 import { useUser, updateUser } from '../util/db';
 
-function SettingsGeneral(props) {
+function SettingsGeneral({ onRequireReauth, parentColor }) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
@@ -23,15 +24,13 @@ function SettingsGeneral(props) {
 
     return auth
       .updateEmail(data.email)
-      .then(() =>
-        // Update user in database
-        updateUser(user.uid, data).then(() => {
-          // Show success alert message
-          setFormAlert({
-            type: 'success',
-            message: 'Your profile has been updated',
-          });
-        }))
+      .then(() => updateUser(user.uid, data).then(() => {
+        // Show success alert message
+        setFormAlert({
+          type: 'success',
+          message: 'Your profile has been updated',
+        });
+      }))
       .catch((error) => {
         if (error.code === 'auth/requires-recent-login') {
           // Remove existing alert message
@@ -39,7 +38,7 @@ function SettingsGeneral(props) {
 
           // Show re-authentication modal and
           // then re-call onSubmit() when done.
-          props.onRequireReauth(() => {
+          onRequireReauth(() => {
             onSubmit({ email: data.email });
           });
         } else {
@@ -94,7 +93,7 @@ function SettingsGeneral(props) {
         <div className="field">
           <div className="control">
             <SectionButton
-              parentColor={props.parentColor}
+              parentColor={parentColor}
               size="medium"
               state={pending ? 'loading' : 'normal'}
             >
@@ -106,5 +105,10 @@ function SettingsGeneral(props) {
     </>
   );
 }
+
+SettingsGeneral.propTypes = {
+  onRequireReauth: func.isRequired,
+  parentColor: string.isRequired,
+};
 
 export default SettingsGeneral;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { node } from 'prop-types';
 
 function CenteredColumns({ children }) {
   return (
@@ -8,4 +9,7 @@ function CenteredColumns({ children }) {
   );
 }
 
+CenteredColumns.propTypes = {
+  children: node.isRequired,
+};
 export default CenteredColumns;

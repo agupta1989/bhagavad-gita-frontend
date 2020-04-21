@@ -1,10 +1,21 @@
 import React from 'react';
+import {
+  string, number, arrayOf, shape,
+} from 'prop-types';
 import Section from './Section';
 import SectionHeader from './SectionHeader';
 import Auth from './Auth';
 import './AuthSection.scss';
 
-function AuthSection(props) {
+function AuthSection({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+  providers,
+  afterAuthPath,
+  type,
+}) {
   // Values for each auth type
   const allTypeValues = {
     signin: {
@@ -32,17 +43,17 @@ function AuthSection(props) {
   };
 
   // Ensure we have a valid auth type
-  const currentType = allTypeValues[props.type] ? props.type : 'signup';
+  const currentType = allTypeValues[type] ? type : 'signup';
 
   // Get values for current auth type
   const typeValues = allTypeValues[currentType];
 
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       <div className="AuthSection__container container">
         <SectionHeader
@@ -55,14 +66,24 @@ function AuthSection(props) {
         <Auth
           type={currentType}
           typeValues={typeValues}
-          parentColor={props.color}
-          providers={props.providers}
-          afterAuthPath={props.afterAuthPath}
+          parentColor={color}
+          providers={providers}
+          afterAuthPath={afterAuthPath}
           key={currentType}
         />
       </div>
     </Section>
   );
 }
+
+AuthSection.propTypes = {
+  color: string.isRequired,
+  size: number.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: number.isRequired,
+  type: string.isRequired,
+  afterAuthPath: string.isRequired,
+  providers: arrayOf(shape({})).isRequired,
+};
 
 export default AuthSection;

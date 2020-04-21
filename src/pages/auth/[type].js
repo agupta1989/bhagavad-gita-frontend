@@ -2,7 +2,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import AuthSection from '../../components/AuthSection';
 
-function AuthTypePage(props) {
+function AuthTypePage() {
   const router = useRouter();
   const { type } = router.query;
 

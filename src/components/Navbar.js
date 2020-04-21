@@ -1,20 +1,22 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { bool, string } from 'prop-types';
+
 import NavbarContainer from './NavbarContainer';
 import { useAuth } from '../util/auth';
 
-function Navbar(props) {
+function Navbar({ spaced, color, logo }) {
   const auth = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <NavbarContainer spaced={props.spaced} color={props.color}>
+    <NavbarContainer spaced={spaced} color={color}>
       <div className="container">
         <div className="navbar-brand">
           <div className="navbar-item">
             <Link href="/">
               <a>
-                <img className="image" src={props.logo} alt="Logo" />
+                <img className="image" src={logo} alt="Logo" />
               </a>
             </Link>
           </div>
@@ -73,4 +75,9 @@ function Navbar(props) {
   );
 }
 
+Navbar.propTypes = {
+  spaced: bool.isRequired,
+  color: string.isRequired,
+  logo: string.isRequired,
+};
 export default Navbar;

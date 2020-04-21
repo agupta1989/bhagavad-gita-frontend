@@ -1,15 +1,17 @@
 import React from 'react';
+import { string, number } from 'prop-types';
+
 import Section from './Section';
 import SectionHeader from './SectionHeader';
-import { useAuth } from '../util/auth.js';
+import { useAuth } from '../util/auth';
 import './DashboardPlaceholder.scss';
 
-function DashboardPlaceholder(props) {
+function DashboardPlaceholder({ color, size }) {
   const auth = useAuth();
   if (!auth.user) return null;
 
   return (
-    <Section color={props.color} size={props.size}>
+    <Section color={color} size={size}>
       <div className="container">
         <SectionHeader
           title="Hey there 👋"
@@ -43,4 +45,8 @@ function DashboardPlaceholder(props) {
   );
 }
 
+DashboardPlaceholder.propTypes = {
+  color: string.isRequired,
+  size: number.isRequired,
+};
 export default DashboardPlaceholder;

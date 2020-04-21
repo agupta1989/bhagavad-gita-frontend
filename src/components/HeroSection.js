@@ -1,40 +1,46 @@
 import React from 'react';
+import { string, number, func } from 'prop-types';
 import Section from './Section';
 import SectionHeader from './SectionHeader';
 import SectionButton from './SectionButton';
 import './HeroSection.scss';
 
-function HeroSection(props) {
+function HeroSection({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+  title,
+  subtitle,
+  image,
+  buttonOnClick,
+  buttonText,
+}) {
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       <div className="container">
         <div className="columns is-vcentered is-desktop">
           <div className="column is-5-desktop has-text-centered-touch">
-            <SectionHeader
-              title={props.title}
-              subtitle={props.subtitle}
-              size={1}
-              spaced
-            />
+            <SectionHeader title={title} subtitle={subtitle} size={1} spaced />
             <div className="buttons is-inline-flex">
               <SectionButton
-                parentColor={props.color}
+                parentColor={color}
                 size="medium"
-                onClick={props.buttonOnClick}
+                onClick={buttonOnClick}
               >
-                {props.buttonText}
+                {buttonText}
               </SectionButton>
             </div>
           </div>
           <div className="column is-1" />
           <div className="column">
             <figure className="HeroSection__image image">
-              <img src={props.image} alt="Illustration" />
+              <img src={image} alt="Illustration" />
             </figure>
           </div>
         </div>
@@ -42,5 +48,17 @@ function HeroSection(props) {
     </Section>
   );
 }
+
+HeroSection.propTypes = {
+  color: string.isRequired,
+  size: number.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: number.isRequired,
+  title: string.isRequired,
+  subtitle: string.isRequired,
+  buttonText: string.isRequired,
+  buttonOnClick: func.isRequired,
+  image: string.isRequired,
+};
 
 export default HeroSection;

@@ -49,6 +49,7 @@ function AuthSocial({
     <div className="buttons">
       {providers.map((provider) => (
         <button
+          type="button"
           className={`button is-medium is-fullwidth${
             pending === provider ? ' is-loading' : ''
           }`}

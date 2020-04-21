@@ -1,17 +1,21 @@
 import React from 'react';
+import { bool, string, node } from 'prop-types';
 
-function NavbarContainer(props) {
+function NavbarContainer({ spaced, color, children }) {
   return (
     <nav
-      className={
-        `navbar${
-          props.color ? ` is-${props.color}` : ''
-        }${props.spaced ? ' is-spaced' : ''}`
-      }
+      className={`navbar${color ? ` is-${color}` : ''}${
+        spaced ? ' is-spaced' : ''
+      }`}
     >
-      {props.children}
+      {children}
     </nav>
   );
 }
 
+NavbarContainer.propTypes = {
+  spaced: bool.isRequired,
+  color: string.isRequired,
+  children: node.isRequired,
+};
 export default NavbarContainer;

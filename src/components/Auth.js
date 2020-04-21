@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import {
+  func, string, arrayOf, shape,
+} from 'prop-types';
+
 import { useRouter } from 'next/router';
 import FormAlert from './FormAlert';
 import AuthForm from './AuthForm';
@@ -6,12 +10,14 @@ import AuthSocial from './AuthSocial';
 import AuthFooter from './AuthFooter';
 import './Auth.scss';
 
-function Auth(props) {
+function Auth({
+  afterAuthPath, type, typeValues, providers, parentColor,
+}) {
   const router = useRouter();
   const [formAlert, setFormAlert] = useState(null);
 
-  const handleAuth = (user) => {
-    router.push(props.afterAuthPath);
+  const handleAuth = () => {
+    router.push(afterAuthPath);
   };
 
   const handleFormAlert = (data) => {
@@ -21,32 +27,29 @@ function Auth(props) {
   return (
     <>
       {formAlert && (
-        <FormAlert
-          type={formAlert.type}
-          message={formAlert.message}
-        />
+        <FormAlert type={formAlert.type} message={formAlert.message} />
       )}
 
       <AuthForm
-        type={props.type}
-        typeValues={props.typeValues}
-        parentColor={props.parentColor}
+        type={type}
+        typeValues={typeValues}
+        parentColor={parentColor}
         onAuth={handleAuth}
         onFormAlert={handleFormAlert}
       />
 
-      {['signup', 'signin'].includes(props.type) && (
+      {['signup', 'signin'].includes(type) && (
         <>
-          {props.providers && props.providers.length && (
+          {providers && providers.length && (
             <>
               <div className="Auth__social-divider has-text-centered is-size-7">
                 OR
               </div>
               <AuthSocial
-                type={props.type}
-                buttonText={props.typeValues.buttonText}
+                type={type}
+                buttonText={typeValues.buttonText}
                 showLastUsed
-                providers={props.providers}
+                providers={providers}
                 onAuth={handleAuth}
                 onError={(message) => {
                   handleFormAlert({
@@ -58,14 +61,19 @@ function Auth(props) {
             </>
           )}
 
-          <AuthFooter
-            type={props.type}
-            typeValues={props.typeValues}
-          />
+          <AuthFooter type={type} typeValues={typeValues} />
         </>
       )}
     </>
   );
 }
+
+Auth.propTypes = {
+  afterAuthPath: func.isRequired,
+  type: string.isRequired,
+  typeValues: shape({}).isRequired,
+  providers: arrayOf(shape({})).isRequired,
+  parentColor: string.isRequired,
+};
 
 export default Auth;
