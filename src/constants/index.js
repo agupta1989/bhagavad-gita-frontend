@@ -1,3 +1,3 @@
-import providers from './constants';
+import { providers } from './constants';
 
 export { providers };
