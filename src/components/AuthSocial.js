@@ -1,17 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useAuth } from "./../util/auth.js";
-import "./AuthSocial.scss";
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import { useAuth } from '../util/auth';
+import './AuthSocial.scss';
 
-function AuthSocial(props) {
+function AuthSocial({
+  providers, onAuth, onError, showLastUsed, buttonText,
+}) {
   const auth = useAuth();
   const [pending, setPending] = useState(null);
   const [lastUsed, setLastUsed] = useState(null);
 
   const providerDisplayNames = {
-    google: "Google",
-    facebook: "Facebook",
-    twitter: "Twitter",
-    github: "GitHub",
+    google: 'Google',
+    facebook: 'Facebook',
+    twitter: 'Twitter',
+    github: 'GitHub',
   };
 
   const onSigninWithProvider = (provider) => {
@@ -21,11 +24,11 @@ function AuthSocial(props) {
       .then((user) => {
         // Remember this provider was last used
         // so we can indicate for next login.
-        localStorage.setItem("lastUsedAuthProvider", provider);
-        props.onAuth(user);
+        localStorage.setItem('lastUsedAuthProvider', provider);
+        onAuth(user);
       })
       .catch((error) => {
-        props.onError(error.message);
+        onError(error.message);
       })
       .finally(() => {
         setPending(null);
@@ -34,22 +37,22 @@ function AuthSocial(props) {
 
   // Get value of last used auth provider
   useEffect(() => {
-    if (props.showLastUsed) {
-      const lastUsed = localStorage.getItem("lastUsedAuthProvider");
-      if (lastUsed) {
-        setLastUsed(lastUsed);
+    if (showLastUsed) {
+      const lastUsedProvider = localStorage.getItem('lastUsedAuthProvider');
+      if (lastUsedProvider) {
+        setLastUsed(lastUsedProvider);
       }
     }
-  }, [props.showLastUsed]);
+  }, [showLastUsed]);
 
   return (
     <div className="buttons">
-      {props.providers.map((provider) => (
+      {providers.map((provider) => (
         <button
-          className={
-            "button is-medium is-fullwidth" +
-            (pending === provider ? " is-loading" : "")
-          }
+          type="button"
+          className={`button is-medium is-fullwidth${
+            pending === provider ? ' is-loading' : ''
+          }`}
           onClick={() => {
             onSigninWithProvider(provider);
           }}
@@ -59,10 +62,13 @@ function AuthSocial(props) {
             <img
               src={`https://uploads.divjoy.com/icon-${provider}.svg`}
               alt={providerDisplayNames[provider]}
-            ></img>
+            />
           </div>
           <span>
-            {props.buttonText} with {providerDisplayNames[provider]}
+            {buttonText}
+            {' '}
+            with
+            {providerDisplayNames[provider]}
           </span>
 
           {provider === lastUsed && (
@@ -73,5 +79,13 @@ function AuthSocial(props) {
     </div>
   );
 }
+
+AuthSocial.propTypes = {
+  providers: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  buttonText: PropTypes.string.isRequired,
+  onAuth: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
+  showLastUsed: PropTypes.bool.isRequired,
+};
 
 export default AuthSocial;

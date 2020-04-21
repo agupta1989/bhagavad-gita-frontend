@@ -1,6 +1,10 @@
-import React from "react";
-import BackgroundImage from "./BackgroundImage";
-import "./Section.scss";
+import React from 'react';
+import {
+  string, number, node, bool,
+} from 'prop-types';
+import BackgroundImage from './BackgroundImage';
+
+import './Section.scss';
 
 function Section(props) {
   const {
@@ -10,17 +14,14 @@ function Section(props) {
     backgroundImageOpacity,
     backgroundImageRepeat,
     children,
-    // Passed to section element
     ...otherProps
   } = props;
 
   return (
     <section
-      className={
-        "SectionComponent hero section is-block is-relative" +
-        (color ? ` is-${color}` : "") +
-        (size ? ` is-${size}` : "")
-      }
+      className={`SectionComponent hero section is-block is-relative${
+        color ? ` is-${color}` : ''
+      }${size ? ` is-${size}` : ''}`}
       {...otherProps}
     >
       {backgroundImage && (
@@ -28,12 +29,24 @@ function Section(props) {
           image={backgroundImage}
           opacity={backgroundImageOpacity}
           repeat={backgroundImageRepeat}
-        ></BackgroundImage>
+        />
       )}
 
-      {props.children}
+      {children}
     </section>
   );
 }
+
+Section.propTypes = {
+  color: string.isRequired,
+  size: string.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: number.isRequired,
+  backgroundImageRepeat: bool,
+  children: node.isRequired,
+};
+Section.defaultProps = {
+  backgroundImageRepeat: false,
+};
 
 export default Section;

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import { useAuth } from "./../util/auth.js";
-import { useForm } from "react-hook-form";
-import { useUser, updateUser } from "./../util/db.js";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { string, func } from 'prop-types';
+import FormAlert from './FormAlert';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import { useAuth } from '../util/auth';
+import { useUser, updateUser } from '../util/db';
 
-function SettingsGeneral(props) {
+function SettingsGeneral({ onRequireReauth, parentColor }) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
@@ -23,30 +24,27 @@ function SettingsGeneral(props) {
 
     return auth
       .updateEmail(data.email)
-      .then(() => {
-        // Update user in database
-        return updateUser(user.uid, data).then(() => {
-          // Show success alert message
-          setFormAlert({
-            type: "success",
-            message: "Your profile has been updated",
-          });
+      .then(() => updateUser(user.uid, data).then(() => {
+        // Show success alert message
+        setFormAlert({
+          type: 'success',
+          message: 'Your profile has been updated',
         });
-      })
+      }))
       .catch((error) => {
-        if (error.code === "auth/requires-recent-login") {
+        if (error.code === 'auth/requires-recent-login') {
           // Remove existing alert message
           setFormAlert(null);
 
           // Show re-authentication modal and
           // then re-call onSubmit() when done.
-          props.onRequireReauth(() => {
+          onRequireReauth(() => {
             onSubmit({ email: data.email });
           });
         } else {
           // Show error alert message
           setFormAlert({
-            type: "error",
+            type: 'error',
             message: error.message,
           });
         }
@@ -59,17 +57,14 @@ function SettingsGeneral(props) {
 
   // Show loading indicator until
   // database query completes.
-  if (status === "loading") {
-    return "Loading ...";
+  if (status === 'loading') {
+    return 'Loading ...';
   }
 
   return (
     <>
       {formAlert && (
-        <FormAlert
-          type={formAlert.type}
-          message={formAlert.message}
-        ></FormAlert>
+        <FormAlert type={formAlert.type} message={formAlert.message} />
       )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -81,9 +76,9 @@ function SettingsGeneral(props) {
           placeholder="Name"
           error={errors.name}
           inputRef={register({
-            required: "Please enter your name",
+            required: 'Please enter your name',
           })}
-        ></FormField>
+        />
         <FormField
           name="email"
           type="email"
@@ -92,15 +87,15 @@ function SettingsGeneral(props) {
           placeholder="Email"
           error={errors.email}
           inputRef={register({
-            required: "Please enter your email",
+            required: 'Please enter your email',
           })}
-        ></FormField>
+        />
         <div className="field">
           <div className="control">
             <SectionButton
-              parentColor={props.parentColor}
+              parentColor={parentColor}
               size="medium"
-              state={pending ? "loading" : "normal"}
+              state={pending ? 'loading' : 'normal'}
             >
               Save
             </SectionButton>
@@ -110,5 +105,10 @@ function SettingsGeneral(props) {
     </>
   );
 }
+
+SettingsGeneral.propTypes = {
+  onRequireReauth: func.isRequired,
+  parentColor: string.isRequired,
+};
 
 export default SettingsGeneral;

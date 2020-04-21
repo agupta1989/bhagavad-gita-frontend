@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import FormAlert from "./FormAlert";
-import FormField from "./FormField";
-import SectionButton from "./SectionButton";
-import AuthSocial from "./AuthSocial";
-import { useAuth } from "./../util/auth.js";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { func, string } from 'prop-types';
+import { useForm } from 'react-hook-form';
+import FormAlert from './FormAlert';
+import FormField from './FormField';
+import SectionButton from './SectionButton';
+import AuthSocial from './AuthSocial';
+import { useAuth } from '../util/auth';
 
-function ReauthModal(props) {
+function ReauthModal({
+  onComplete, onCancel, provider, parentColor,
+}) {
   const auth = useAuth();
   const [pending, setPending] = useState(false);
   const [formAlert, setFormAlert] = useState(null);
@@ -19,13 +22,13 @@ function ReauthModal(props) {
 
     auth
       .signin(auth.user.email, pass)
-      .then(() => props.onComplete())
+      .then(() => onComplete())
       .catch((error) => {
         // Hide pending indicator
         setPending(false);
         // Show error alert message
         setFormAlert({
-          type: "error",
+          type: 'error',
           message: error.message,
         });
       });
@@ -33,29 +36,27 @@ function ReauthModal(props) {
 
   return (
     <div className="modal is-active">
-      <div className="modal-background"></div>
+      <div className="modal-background" />
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">
             Please sign in again to complete this action
           </p>
           <span className="card-header-icon">
+            {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
             <a
               className="delete"
               ariaLabel="close"
-              onClick={(e) => props.onCancel()}
-            ></a>
+              onClick={() => onCancel()}
+            />
           </span>
         </header>
         <section className="card-content">
           {formAlert && (
-            <FormAlert
-              type={formAlert.type}
-              message={formAlert.message}
-            ></FormAlert>
+            <FormAlert type={formAlert.type} message={formAlert.message} />
           )}
 
-          {props.provider === "password" && (
+          {provider === 'password' && (
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormField
                 name="pass"
@@ -63,15 +64,15 @@ function ReauthModal(props) {
                 placeholder="Password"
                 error={errors.pass}
                 inputRef={register({
-                  required: "Please enter your password",
+                  required: 'Please enter your password',
                 })}
-              ></FormField>
+              />
               <div className="field">
                 <div className="control">
                   <SectionButton
-                    parentColor={props.parentColor}
+                    parentColor={parentColor}
                     size="medium"
-                    state={pending ? "loading" : "normal"}
+                    state={pending ? 'loading' : 'normal'}
                   >
                     Sign in
                   </SectionButton>
@@ -80,25 +81,32 @@ function ReauthModal(props) {
             </form>
           )}
 
-          {props.provider !== "password" && (
+          {provider !== 'password' && (
             <AuthSocial
               type="signin"
               buttonText="Sign in"
               showLastUsed={false}
-              providers={[props.provider]}
-              onAuth={props.onComplete}
+              providers={[provider]}
+              onAuth={onComplete}
               onError={(message) => {
                 setFormAlert({
-                  type: "error",
-                  message: message,
+                  type: 'error',
+                  message,
                 });
               }}
-            ></AuthSocial>
+            />
           )}
         </section>
       </div>
     </div>
   );
 }
+
+ReauthModal.propTypes = {
+  onComplete: func.isRequired,
+  onCancel: func.isRequired,
+  provider: string.isRequired,
+  parentColor: string.isRequired,
+};
 
 export default ReauthModal;

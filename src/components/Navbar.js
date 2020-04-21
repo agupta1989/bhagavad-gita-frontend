@@ -1,33 +1,35 @@
-import React, { useState } from "react";
-import NavbarContainer from "./NavbarContainer";
-import Link from "next/link";
-import { useAuth } from "./../util/auth.js";
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { bool, string } from 'prop-types';
 
-function Navbar(props) {
+import NavbarContainer from './NavbarContainer';
+import { useAuth } from '../util/auth';
+
+function Navbar({ spaced, color, logo }) {
   const auth = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <NavbarContainer spaced={props.spaced} color={props.color}>
+    <NavbarContainer spaced={spaced} color={color}>
       <div className="container">
         <div className="navbar-brand">
           <div className="navbar-item">
             <Link href="/">
               <a>
-                <img className="image" src={props.logo} alt="Logo"></img>
+                <img className="image" src={logo} alt="Logo" />
               </a>
             </Link>
           </div>
           <div
-            className={"navbar-burger burger" + (menuOpen ? " is-active" : "")}
+            className={`navbar-burger burger${menuOpen ? ' is-active' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span></span>
-            <span></span>
-            <span></span>
+            <span />
+            <span />
+            <span />
           </div>
         </div>
-        <div className={"navbar-menu" + (menuOpen ? " is-active" : "")}>
+        <div className={`navbar-menu${menuOpen ? ' is-active' : ''}`}>
           <div className="navbar-end">
             {auth.user && (
               <div className="navbar-item has-dropdown is-hoverable">
@@ -44,7 +46,7 @@ function Navbar(props) {
                     <a className="navbar-item">Settings</a>
                   </Link>
 
-                  <hr className="dropdown-divider"></hr>
+                  <hr className="dropdown-divider" />
 
                   <Link href="/auth/signout">
                     <a
@@ -73,4 +75,9 @@ function Navbar(props) {
   );
 }
 
+Navbar.propTypes = {
+  spaced: bool.isRequired,
+  color: string.isRequired,
+  logo: string.isRequired,
+};
 export default Navbar;

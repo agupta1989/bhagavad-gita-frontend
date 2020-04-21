@@ -1,21 +1,31 @@
-import React from "react";
-import Section from "./Section";
-import Link from "next/link";
-import "./Footer.scss";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React from 'react';
+import { string, number } from 'prop-types';
 
-function Footer(props) {
+import Link from 'next/link';
+import Section from './Section';
+import './Footer.scss';
+
+function Footer({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+  copyright,
+  logo,
+}) {
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       <div className="FooterComponent__container container">
         <div className="brand left">
           <Link href="/">
             <a>
-              <img src={props.logo} alt="Logo"></img>
+              <img src={logo} alt="Logo" />
             </a>
           </Link>
         </div>
@@ -47,7 +57,7 @@ function Footer(props) {
             rel="noopener noreferrer"
           >
             <span className="icon">
-              <i className="fab fa-twitter"></i>
+              <i className="fab fa-twitter" />
             </span>
           </a>
           <a
@@ -56,7 +66,7 @@ function Footer(props) {
             rel="noopener noreferrer"
           >
             <span className="icon">
-              <i className="fab fa-facebook-f"></i>
+              <i className="fab fa-facebook-f" />
             </span>
           </a>
           <a
@@ -65,14 +75,23 @@ function Footer(props) {
             rel="noopener noreferrer"
           >
             <span className="icon">
-              <i className="fab fa-instagram"></i>
+              <i className="fab fa-instagram" />
             </span>
           </a>
         </div>
-        <div className="copyright left">{props.copyright}</div>
+        <div className="copyright left">{copyright}</div>
       </div>
     </Section>
   );
 }
+
+Footer.propTypes = {
+  color: string.isRequired,
+  logo: string.isRequired,
+  backgroundImage: string.isRequired,
+  backgroundImageOpacity: number.isRequired,
+  copyright: string.isRequired,
+  size: string.isRequired,
+};
 
 export default Footer;

@@ -1,38 +1,45 @@
-import React from "react";
-import "./SectionHeader.scss";
+import React from 'react';
+import { string, number, bool } from 'prop-types';
+import './SectionHeader.scss';
 
-function SectionHeader(props) {
+function SectionHeader({
+  title, subtitle, className, size, spaced,
+}) {
   // Render nothing if no title or subtitle
-  if (!props.title && !props.subtitle) {
+  if (!title && !subtitle) {
     return null;
   }
 
   return (
-    <header
-      className={
-        "SectionHeader" + (props.className ? ` ${props.className}` : "")
-      }
-    >
-      {props.title && (
+    <header className={`SectionHeader${className ? ` ${className}` : ''}`}>
+      {title && (
         <h1
-          className={
-            "title has-text-weight-bold" +
-            (props.size ? ` is-${props.size}` : "") +
-            (props.size === 1 ? " is-size-2-mobile" : "") +
-            (props.spaced ? " is-spaced" : "")
-          }
+          className={`title has-text-weight-bold${size ? ` is-${size}` : ''}${
+            size === 1 ? ' is-size-2-mobile' : ''
+          }${spaced ? ' is-spaced' : ''}`}
         >
-          {props.title}
+          {title}
         </h1>
       )}
 
-      {props.subtitle && (
-        <p className={"subtitle" + (props.size > 4 ? " is-6" : "")}>
-          <span className="SectionHeader__no-classname">{props.subtitle}</span>
+      {subtitle && (
+        <p className={`subtitle${size > 4 ? ' is-6' : ''}`}>
+          <span className="SectionHeader__no-classname">{subtitle}</span>
         </p>
       )}
     </header>
   );
 }
 
+SectionHeader.propTypes = {
+  title: string.isRequired,
+  subtitle: string.isRequired,
+  className: string,
+  size: number.isRequired,
+  spaced: bool.isRequired,
+};
+
+SectionHeader.defaultProps = {
+  className: '',
+};
 export default SectionHeader;

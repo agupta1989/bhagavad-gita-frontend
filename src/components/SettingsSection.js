@@ -1,15 +1,21 @@
-import React, { useState } from "react";
-import Section from "./Section";
-import ReauthModal from "./ReauthModal";
-import SettingsNav from "./SettingsNav";
-import SettingsGeneral from "./SettingsGeneral";
-import SettingsPassword from "./SettingsPassword";
-import { useAuth } from "./../util/auth.js";
-import "./SettingsSection.scss";
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Section from './Section';
+import ReauthModal from './ReauthModal';
+import SettingsNav from './SettingsNav';
+import SettingsGeneral from './SettingsGeneral';
+import SettingsPassword from './SettingsPassword';
+import { useAuth } from '../util/auth';
+import './SettingsSection.scss';
 
-function SettingsSection(props) {
+function SettingsSection({
+  color,
+  size,
+  backgroundImage,
+  backgroundImageOpacity,
+}) {
   const auth = useAuth();
-  const [section, setSection] = useState("general");
+  const [section, setSection] = useState('general');
 
   // If an action is security sensitive it will
   // trigger a re-authentication flow.
@@ -20,7 +26,7 @@ function SettingsSection(props) {
   const handleRequireReauth = (callback) => {
     setReauthState({
       show: true,
-      callback: callback,
+      callback,
     });
   };
 
@@ -35,40 +41,47 @@ function SettingsSection(props) {
 
   return (
     <Section
-      color={props.color}
-      size={props.size}
-      backgroundImage={props.backgroundImage}
-      backgroundImageOpacity={props.backgroundImageOpacity}
+      color={color}
+      size={size}
+      backgroundImage={backgroundImage}
+      backgroundImageOpacity={backgroundImageOpacity}
     >
       {reauthState.show && (
         <ReauthModal
           provider={auth.user.providers[0]}
           onComplete={handleCompleteReauth}
           onCancel={handleCancelReauth}
-        ></ReauthModal>
+        />
       )}
 
       <SettingsNav
         activeKey={section}
         onSelect={(selected) => setSection(selected)}
-      ></SettingsNav>
+      />
       <div className="SettingsSection__container container">
-        {section === "general" && (
+        {section === 'general' && (
           <SettingsGeneral
             onRequireReauth={handleRequireReauth}
-            parentColor={props.color}
-          ></SettingsGeneral>
+            parentColor={color}
+          />
         )}
 
-        {section === "password" && (
+        {section === 'password' && (
           <SettingsPassword
             onRequireReauth={handleRequireReauth}
-            parentColor={props.color}
-          ></SettingsPassword>
+            parentColor={color}
+          />
         )}
       </div>
     </Section>
   );
 }
+
+SettingsSection.propTypes = {
+  color: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  backgroundImage: PropTypes.string.isRequired,
+  backgroundImageOpacity: PropTypes.string.isRequired,
+};
 
 export default SettingsSection;

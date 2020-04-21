@@ -1,17 +1,20 @@
-import React from "react";
+import React from 'react';
+import { string } from 'prop-types';
 
-function FormAlert(props) {
+function FormAlert({ type, message }) {
   return (
     <div
-      className={
-        "notification" +
-        (props.type === "error" ? " is-danger" : "") +
-        (props.type === "success" ? " is-success" : "")
-      }
+      className={`notification${type === 'error' ? ' is-danger' : ''}${
+        type === 'success' ? ' is-success' : ''
+      }`}
     >
-      {props.message}
+      {message}
     </div>
   );
 }
 
+FormAlert.propTypes = {
+  type: string.isRequired,
+  message: string.isRequired,
+};
 export default FormAlert;

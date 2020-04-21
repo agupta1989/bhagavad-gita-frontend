@@ -1,7 +1,7 @@
-import React from "react";
-import FaqSection from "./../components/FaqSection";
+import React from 'react';
+import FaqSection from '../components/FaqSection';
 
-function FaqPage(props) {
+function FaqPage() {
   return (
     <FaqSection
       color="white"
@@ -10,7 +10,7 @@ function FaqPage(props) {
       backgroundImageOpacity={1}
       title="Frequently Asked Questions"
       subtitle=""
-    ></FaqSection>
+    />
   );
 }
 

@@ -1,22 +1,23 @@
-import React from "react";
+import React from 'react';
+import { string, func } from 'prop-types';
 
-function SettingsNav(props) {
+function SettingsNav({ activeKey, onSelect }) {
   return (
     <div className="tabs is-toggle is-centered">
       <ul>
-        <li
-          className={"" + (props.activeKey === "general" ? " is-active" : "")}
-        >
-          <a onClick={() => props.onSelect("general")}>General</a>
+        <li className={`${activeKey === 'general' ? ' is-active' : ''}`}>
+          <a onClick={() => onSelect('general')}>General</a>
         </li>
-        <li
-          className={"" + (props.activeKey === "password" ? " is-active" : "")}
-        >
-          <a onClick={() => props.onSelect("password")}>Password</a>
+        <li className={`${activeKey === 'password' ? ' is-active' : ''}`}>
+          <a onClick={() => onSelect('password')}>Password</a>
         </li>
       </ul>
     </div>
   );
 }
 
+SettingsNav.propTypes = {
+  activeKey: string.isRequired,
+  onSelect: func.isRequired,
+};
 export default SettingsNav;

@@ -1,16 +1,23 @@
-import React from "react";
-import "./BackgroundImage.scss";
+import React from 'react';
+import { bool, string, number } from 'prop-types';
+import './BackgroundImage.scss';
 
-function BackgroundImage(props) {
+function BackgroundImage({ repeat, image, opacity }) {
   return (
     <div
-      className={"BackgroundImage" + (props.repeat ? " repeat" : "")}
+      className={`BackgroundImage${repeat ? ' repeat' : ''}`}
       style={{
-        "--image": `url(${props.image})`,
-        "--opacity": props.opacity,
+        '--image': `url(${image})`,
+        '--opacity': opacity,
       }}
-    ></div>
+    />
   );
 }
+
+BackgroundImage.propTypes = {
+  repeat: bool.isRequired,
+  image: string.isRequired,
+  opacity: number.isRequired,
+};
 
 export default BackgroundImage;

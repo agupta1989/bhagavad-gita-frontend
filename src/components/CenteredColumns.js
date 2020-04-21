@@ -1,11 +1,15 @@
-import React from "react";
+import React from 'react';
+import { node } from 'prop-types';
 
-function CenteredColumns(props) {
+function CenteredColumns({ children }) {
   return (
     <div className="columns is-centered is-variable is-4 is-multiline">
-      {props.children}
+      {children}
     </div>
   );
 }
 
+CenteredColumns.propTypes = {
+  children: node.isRequired,
+};
 export default CenteredColumns;

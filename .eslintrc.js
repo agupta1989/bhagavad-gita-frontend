@@ -19,6 +19,11 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/react-in-jsx-scope': 'off',
-    'react/jsx-filename-extension': 'off'
+    'react/jsx-filename-extension': 'off',
+    'import/prefer-default-export': 'off',
+    'react/jsx-props-no-spreading': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
+    'jsx-a11y/no-static-element-interactions': 'off',
+    'jsx-a11y/anchor-is-valid': 'off'
   }
 };

@@ -15,6 +15,7 @@
     "firebase-admin": "8.9.2",
     "next": "9.3.4",
     "node-sass": "4.13.0",
+    "prop-types": "^15.7.2",
     "query-string": "6.9.0",
     "react": "16.12.0",
     "react-dom": "16.12.0",
@@ -25,7 +26,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint '**/*.js' --ignore-pattern node_modules/"
+    "lint": "eslint '**/*.js' --ignore-pattern node_modules/",
+    "lint:watch": "node node_modules/eslint-watch/bin/esw -w --fix",
+    "lint:fix": "eslint '**/*.js' --ignore-pattern node_modules/ --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -48,6 +51,7 @@
     "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^2.5.1"
+    "eslint-plugin-react-hooks": "^2.5.1",
+    "eslint-watch": "^6.0.1"
   }
 }

@@ -1,8 +1,8 @@
-import React from "react";
-import AuthSection from "./../../components/AuthSection";
-import { useRouter } from "next/router";
+import React from 'react';
+import { useRouter } from 'next/router';
+import AuthSection from '../../components/AuthSection';
 
-function AuthTypePage(props) {
+function AuthTypePage() {
   const router = useRouter();
   const { type } = router.query;
 
@@ -13,9 +13,9 @@ function AuthTypePage(props) {
       backgroundImage=""
       backgroundImageOpacity={1}
       type={type}
-      providers={["google", "facebook", "twitter"]}
+      providers={['google', 'facebook', 'twitter']}
       afterAuthPath="/dashboard"
-    ></AuthSection>
+    />
   );
 }
 
