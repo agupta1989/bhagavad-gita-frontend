@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-  string, number, node, bool,
-} from 'prop-types';
+import { string, node, bool } from 'prop-types';
 
 function SectionButton(props) {
   const {
@@ -44,10 +42,14 @@ function SectionButton(props) {
 
 SectionButton.propTypes = {
   parentColor: string.isRequired,
-  size: number.isRequired,
-  state: string.isRequired,
-  fullWidth: bool.isRequired,
+  size: string.isRequired,
+  state: string,
+  fullWidth: bool,
   children: node.isRequired,
 };
 
+SectionButton.defaultProps = {
+  fullWidth: false,
+  state: '',
+};
 export default SectionButton;

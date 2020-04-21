@@ -1,5 +1,7 @@
 import React from 'react';
-import { string, number, node } from 'prop-types';
+import {
+  string, number, node, bool,
+} from 'prop-types';
 import BackgroundImage from './BackgroundImage';
 
 import './Section.scss';
@@ -37,11 +39,14 @@ function Section(props) {
 
 Section.propTypes = {
   color: string.isRequired,
-  size: number.isRequired,
+  size: string.isRequired,
   backgroundImage: string.isRequired,
   backgroundImageOpacity: number.isRequired,
-  backgroundImageRepeat: string.isRequired,
+  backgroundImageRepeat: bool,
   children: node.isRequired,
+};
+Section.defaultProps = {
+  backgroundImageRepeat: false,
 };
 
 export default Section;

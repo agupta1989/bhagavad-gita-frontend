@@ -91,7 +91,7 @@ Footer.propTypes = {
   backgroundImage: string.isRequired,
   backgroundImageOpacity: number.isRequired,
   copyright: string.isRequired,
-  size: number.isRequired,
+  size: string.isRequired,
 };
 
 export default Footer;

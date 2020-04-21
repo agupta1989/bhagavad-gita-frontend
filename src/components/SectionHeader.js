@@ -34,8 +34,12 @@ function SectionHeader({
 SectionHeader.propTypes = {
   title: string.isRequired,
   subtitle: string.isRequired,
-  className: string.isRequired,
+  className: string,
   size: number.isRequired,
   spaced: bool.isRequired,
+};
+
+SectionHeader.defaultProps = {
+  className: '',
 };
 export default SectionHeader;

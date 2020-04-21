@@ -51,7 +51,7 @@ function HeroSection({
 
 HeroSection.propTypes = {
   color: string.isRequired,
-  size: number.isRequired,
+  size: string.isRequired,
   backgroundImage: string.isRequired,
   backgroundImageOpacity: number.isRequired,
   title: string.isRequired,
