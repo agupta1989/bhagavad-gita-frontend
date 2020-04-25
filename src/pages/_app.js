@@ -11,11 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <ProvideAuth>
       <>
-        <Navbar
-          color="white"
-          spaced
-          logo="https://uploads.divjoy.com/logo.svg"
-        />
+        <Navbar color="white" spaced logo="https://uploads.divjoy.com/logo.svg" />
 
         <Component {...pageProps} />
 

@@ -44,11 +44,7 @@ function ReauthModal({
           </p>
           <span className="card-header-icon">
             {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-            <a
-              className="delete"
-              ariaLabel="close"
-              onClick={() => onCancel()}
-            />
+            <a className="delete" ariaLabel="close" onClick={() => onCancel()} />
           </span>
         </header>
         <section className="card-content">

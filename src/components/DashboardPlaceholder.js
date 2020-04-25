@@ -22,13 +22,13 @@ function DashboardPlaceholder({ color, size }) {
         />
         <div className="columns is-vcentered is-desktop">
           <div className="column is-6-desktop">
-            This would be a good place to build your custom product features
-            after exporting your codebase.
+            This would be a good place to build your custom product features after
+            exporting your codebase.
             <br />
             <br />
-            You can grab the current user, query your database, and render
-            custom components. Divjoy gives you everything you need so that you
-            can get right to work on building your web app.
+            You can grab the current user, query your database, and render custom
+            components. Divjoy gives you everything you need so that you can get
+            right to work on building your web app.
           </div>
           <div className="column is-1" />
           <div className="column">

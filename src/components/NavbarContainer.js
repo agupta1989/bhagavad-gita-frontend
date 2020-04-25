@@ -4,9 +4,7 @@ import { bool, string, node } from 'prop-types';
 function NavbarContainer({ spaced, color, children }) {
   return (
     <nav
-      className={`navbar${color ? ` is-${color}` : ''}${
-        spaced ? ' is-spaced' : ''
-      }`}
+      className={`navbar${color ? ` is-${color}` : ''}${spaced ? ' is-spaced' : ''}`}
     >
       {children}
     </nav>
