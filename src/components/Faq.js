@@ -7,11 +7,7 @@ function Faq({ items }) {
   return (
     <>
       {items.map((item) => (
-        <FaqItem
-          question={item.question}
-          answer={item.answer}
-          key={item.question}
-        />
+        <FaqItem question={item.question} answer={item.answer} key={item.question} />
       ))}
     </>
   );

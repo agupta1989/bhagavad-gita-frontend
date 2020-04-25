@@ -42,38 +42,22 @@ function Footer({
             <a>Contact</a>
           </Link>
 
-          <a
-            target="_blank"
-            href="https://medium.com"
-            rel="noopener noreferrer"
-          >
+          <a target="_blank" href="https://medium.com" rel="noopener noreferrer">
             Blog
           </a>
         </div>
         <div className="social right">
-          <a
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
             <span className="icon">
               <i className="fab fa-twitter" />
             </span>
           </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
             <span className="icon">
               <i className="fab fa-facebook-f" />
             </span>
           </a>
-          <a
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
             <span className="icon">
               <i className="fab fa-instagram" />
             </span>

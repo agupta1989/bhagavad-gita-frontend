@@ -56,9 +56,7 @@ function SettingsPassword({ parentColor, onRequireReauth }) {
 
   return (
     <>
-      {formAlert && (
-        <FormAlert type={formAlert.type} message={formAlert.message} />
-      )}
+      {formAlert && <FormAlert type={formAlert.type} message={formAlert.message} />}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormField

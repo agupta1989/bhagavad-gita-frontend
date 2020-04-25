@@ -9,10 +9,7 @@ import { useAuth } from '../util/auth';
 import './SettingsSection.scss';
 
 function SettingsSection({
-  color,
-  size,
-  backgroundImage,
-  backgroundImageOpacity,
+  color, size, backgroundImage, backgroundImageOpacity,
 }) {
   const auth = useAuth();
   const [section, setSection] = useState('general');

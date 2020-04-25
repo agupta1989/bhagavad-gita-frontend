@@ -44,9 +44,7 @@ function Contact({ showNameField, parentColor, buttonText }) {
 
   return (
     <>
-      {formAlert && (
-        <FormAlert type={formAlert.type} message={formAlert.message} />
-      )}
+      {formAlert && <FormAlert type={formAlert.type} message={formAlert.message} />}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="field is-horizontal">

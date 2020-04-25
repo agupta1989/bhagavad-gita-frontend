@@ -26,9 +26,7 @@ function Auth({
 
   return (
     <>
-      {formAlert && (
-        <FormAlert type={formAlert.type} message={formAlert.message} />
-      )}
+      {formAlert && <FormAlert type={formAlert.type} message={formAlert.message} />}
 
       <AuthForm
         type={type}

@@ -3,12 +3,7 @@ import { string, node, bool } from 'prop-types';
 
 function SectionButton(props) {
   const {
-    parentColor,
-    size,
-    state,
-    fullWidth,
-    children,
-    ...otherProps
+    parentColor, size, state, fullWidth, children, ...otherProps
   } = props;
 
   return (
@@ -27,9 +22,7 @@ function SectionButton(props) {
           ? ` is-${parentColor} is-inverted`
           : ''
       }${
-        ['white', 'light'].includes(parentColor) || !parentColor
-          ? ' is-primary'
-          : ''
+        ['white', 'light'].includes(parentColor) || !parentColor ? ' is-primary' : ''
       }${size ? ` is-${size}` : ''}${state ? ` is-${state}` : ''}${
         fullWidth ? ' is-fullwidth' : ''
       }`}
